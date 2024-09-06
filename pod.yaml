@@ -5,7 +5,7 @@ metadata:
   namespace: dev-environment
 spec:
   containers:
-    -name: nginx
-     image: nginx:latest
-     ports:
-      -conitainerPort: 8080
+    - name: nginx
+      image: nginx:latest
+      ports:
+      - conitainerPort: 8080

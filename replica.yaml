@@ -1,6 +1,7 @@
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
+  namespace: dev-environment
   name: nginx
   labels:
     app: nginx
@@ -35,6 +36,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
+  namespace: dev-environment
   name: nginx-service
   labels:
     app: nginx

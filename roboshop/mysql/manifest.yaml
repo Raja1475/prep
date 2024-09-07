@@ -27,6 +27,8 @@ spec:
         envFrom:
         - secretRef:
             name: mysql-secret
+        - configMapRef:
+            name: mysql
 
 ---
 apiVersion: v1
@@ -52,7 +54,14 @@ metadata:
   namespace: roboshop
 type: Opaque
 data:
-  MYSQL_ALLOW_EMPTY_PASSWORD: "eWVzCg==" # base64 encoded value of 'yes'
-  MYSQL_DATABASE: "Y2l0aWVzCg=="        # base64 encoded value of 'cities'
   MYSQL_USER: "c2hpcHBpbmcK"         # base64 encoded value of 'shipping'
   MYSQL_PASSWORD: "Um9ib1Nob3BAMQo=" 
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql
+  namespace: roboshop
+data:
+  MYSQL_ALLOW_EMPTY_PASSWORD: "yes" 
+  MYSQL_DATABASE: "cities"   

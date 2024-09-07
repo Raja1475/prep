@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   namespace: roboshop
   name: mongodb
-  labeles:
+  labels:
     project: roboshop
     tier: db
 spec:
@@ -14,7 +14,7 @@ spec:
       tier: db
   template:
     metadata:
-      labeles:
+      labels:
         project: roboshop
         tier: db
     spec:
@@ -36,4 +36,4 @@ spec:
     - name: mongodb-port
       protocol: TCP
       port: 27017
-      targertPort: 27017
+      targetPort: 27017

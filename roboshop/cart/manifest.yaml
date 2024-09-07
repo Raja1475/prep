@@ -14,19 +14,19 @@ spec:
       project: roboshop
       tier: app
       component: cart
-    template:
-      metadata:
-        labels:
-          project: roboshop
-          tier: app
-          component: cart
-      spec:
-        containers:
-        - name: cart
-          image: raja1475/cart:25
-          envFrom:
-          - configMapRef:
-              name: cart
+  template:
+    metadata:
+      labels:
+        project: roboshop
+        tier: app
+        component: cart
+    spec:
+      containers:
+      - name: cart
+        image: raja1475/cart:25
+        envFrom:
+        - configMapRef:
+            name: cart
 
 ---
 apiVersion: v1

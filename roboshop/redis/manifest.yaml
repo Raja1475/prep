@@ -4,20 +4,20 @@ metadata:
   name: redis
   namespace: roboshop
   labels: # these labels belong to deployment
-    component: redis
+    app: redis
     tier: db
     project: roboshop
 spec:
   replicas: 1
   selector:
     matchLabels: # these labels should match with pod
-      component: redis
+      app: redis
       tier: db
       project: roboshop
   template: # this is the pod definition
     metadata:
       labels:
-        component: redis
+        app: redis
         tier: db
         project: roboshop
     spec:
@@ -32,7 +32,7 @@ metadata:
   namespace: roboshop
 spec:
   selector:
-    component: redis
+    app: redis
     tier: db
     project: roboshop
   ports:

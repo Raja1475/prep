@@ -3,25 +3,27 @@ kind: Deployment
 metadata:
   name: redis
   namespace: roboshop
-  labels:
-    project: roboshop
+  labels: # these labels belong to deployment
+    component: redis
     tier: db
+    project: roboshop
 spec:
   replicas: 1
   selector:
-    matchLabels:
-      project: roboshop
+    matchLabels: # these labels should match with pod
+      component: redis
       tier: db
-  template:
+      project: roboshop
+  template: # this is the pod definition
     metadata:
       labels:
-        project: roboshop
+        component: redis
         tier: db
+        project: roboshop
     spec:
       containers:
       - name: redis
         image: redis
-
 ---
 apiVersion: v1
 kind: Service
@@ -30,9 +32,11 @@ metadata:
   namespace: roboshop
 spec:
   selector:
-    project: roboshop
+    component: redis
     tier: db
+    project: roboshop
   ports:
   - name: redis-port
-    port: 6379
-    targetPort: 6379
+    protocol: TCP
+    port: 6379 # this port belongs to service
+    targetPort: 6379 # this port belongs to container

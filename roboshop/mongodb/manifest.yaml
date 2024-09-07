@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: mongodb
-          image: joindevops/mongodb:1.0.0
+          image: raja1475/mongodb:25
 
 ---
 apiVersion: v1

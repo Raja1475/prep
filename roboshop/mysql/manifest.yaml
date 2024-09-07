@@ -24,9 +24,9 @@ spec:
       containers:
       - name: mysql
         image: raja1475/mysql:25
-      envFrom:
-      - secretRef:
-          name: mysql-secret
+        envFrom:
+        - secretRef:
+            name: mysql-secret
 
 ---
 apiVersion: v1

@@ -3,7 +3,7 @@ WORKDIR /app
 COPY pom.xml .
 RUN mvn dependency:go-offline
 COPY src /app/src
-RUN mvn package -DskipTests
+RUN mvn package
 
 FROM openjdk:24-slim
 WORKDIR /app

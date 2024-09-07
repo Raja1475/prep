@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: roboshop
+  namespace: testing
   name: mongodb
   labels:
     project: roboshop
@@ -27,7 +27,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: mongodb
-  namespace: roboshop
+  namespace: testing
 spec:
   selector:
     project: roboshop

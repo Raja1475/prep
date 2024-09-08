@@ -59,7 +59,7 @@ spec:
       - name: nginx-logs
         emptyDir: {}
       - name: filebeat-config
-        ConfigMap:
+        configMap:
           name: filebeat-configmap
           items:
             - key: filebeat.yml

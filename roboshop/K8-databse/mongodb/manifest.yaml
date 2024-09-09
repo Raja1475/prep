@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mongodb
+  namespace: roboshop
+  labels:
+    project: roboshop
+    tier: DB
+    component: mongodb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      project: roboshop
+      tier: DB
+      component: mongodb
+  serviceName: "mongodb"
+  template:
+    metadata:
+      labels:
+        project: roboshop
+        tier: DB
+        component: mongodb
+    spec:
+      containers:
+      - name: mongodb
+        image: raja1475/mongodb:25
+---
+volumeClaimTemplate:
+- metadata:
+    name: mongodb
+  spec:
+    accessModes: [ "ReadWriteOnce" ]
+    storageClassName: "ebs-sc"
+    resources:
+      requests: 
+        storate: 5Gi
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb
+  namespace: roboshop
+spec:
+  clusterIP: None #headless
+  selector:
+    app: mongodb
+    tier: db
+    project: roboshop
+  ports:
+  - name: mongodb-port
+    protocol: TCP
+    port: 27017 # this port belongs to service
+    targetPort: 27017 # this port belongs to container

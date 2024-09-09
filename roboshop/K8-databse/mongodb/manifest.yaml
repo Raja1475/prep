@@ -32,6 +32,7 @@ spec:
   volumeClaimTemplates:
   - metadata:
       name: mongodb
+      namespace: roboshop
     spec:
       accessModes: [ "ReadWriteOnce" ]
       storageClassName: "roboshop-dynamic-ebs"

@@ -2,46 +2,46 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: mongodb
-  namespace: roboshop
   labels:
+    app: mongodb
+    tier: db
     project: roboshop
-    tier: DB
-    component: mongodb
 spec:
-  replicas: 1
   selector:
     matchLabels:
+      app: mongodb
+      tier: db
       project: roboshop
-      tier: DB
-      component: mongodb
   serviceName: "mongodb"
+  replicas: 1
   template:
     metadata:
       labels:
+        app: mongodb
+        tier: db
         project: roboshop
-        tier: DB
-        component: mongodb
     spec:
       containers:
       - name: mongodb
-        image: raja1475/mongodb:25
----
-volumeClaimTemplate:
-- metadata:
-    name: mongodb
-  spec:
-    accessModes: [ "ReadWriteOnce" ]
-    storageClassName: "ebs-sc"
-    resources:
-      requests: 
-        storate: 5Gi
-
+        image: joindevops/mongodb:1.0.0
+        volumeMounts:
+        - name: mongodb
+          mountPath: /data/db
+  # this is PVC directly.
+  volumeClaimTemplates:
+  - metadata:
+      name: mongodb
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: "roboshop-dynamic-ebs"
+      resources:
+        requests:
+          storage: 5Gi
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: mongodb
-  namespace: roboshop
 spec:
   clusterIP: None #headless
   selector:

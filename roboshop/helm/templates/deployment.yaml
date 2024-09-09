@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx
+  name: "nginx:{{ .Value.deployment.appVersion }}"
   labels:
     project: roboshop
     app: nginx
 spec:
-  replicas: 2
+  replicas: {{ .Value.deployment.replicas }}
   selector:
     matchLabels:
       project: roboshop
@@ -19,6 +19,6 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: nginx
+        image: "nginx:{{ .Value.deployment.appVersion }}"
         ports:
         - containerPort: 80

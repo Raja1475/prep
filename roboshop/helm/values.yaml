@@ -1,0 +1,3 @@
+deployment:
+  appVersion: stable-alpine-perl
+  replicas: 3
